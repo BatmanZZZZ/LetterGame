@@ -46,6 +46,7 @@ public class MyFragment extends Fragment {
             letterTextView.setText(getRandomLetter());
 
             answerTextView = view.findViewById(R.id.answer_text_view);
+            answerTextView.setText(" ");
 
             Button skyButton = view.findViewById(R.id.sky_button);
             skyButton.setOnClickListener(new View.OnClickListener() {
@@ -207,8 +208,14 @@ public class MyFragment extends Fragment {
             questionCount = 0;
             score = 0;
 
-            letterTextView.setText("Test Completed");
+
             Toast.makeText(getActivity(), "Test Completed! Results saved in the database.", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    proceedToNextQuestion();
+                }
+            }, 2000);
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
