@@ -50,15 +50,19 @@ public class MyFragment extends Fragment {
         skyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String selectedButton = "Sky";
                 if (answerString.equals("Sky Letter")) {
                     answerTextView.setText("Awesome, your answer is correct");
-                    correctAnswers[questionCount] = answerString;
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                     score++;
                 } else {
                     answerTextView.setText("Incorrect! The answer is " + answerString);
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                 }
 
-                selections[questionCount] = answerString;
+                selections[questionCount] = selectedButton;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -73,15 +77,19 @@ public class MyFragment extends Fragment {
         grassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String selectedButton = "Grass";
                 if (answerString.equals("Grass Letter")) {
                     answerTextView.setText("Awesome, your answer is correct");
-                    correctAnswers[questionCount] = answerString;
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                     score++;
                 } else {
                     answerTextView.setText("Incorrect! The answer is " + answerString);
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                 }
 
-                selections[questionCount] = answerString;
+                selections[questionCount] = selectedButton;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -96,15 +104,19 @@ public class MyFragment extends Fragment {
         rootButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String selectedButton = "Root";
                 if (answerString.equals("Root Letter")) {
                     answerTextView.setText("Awesome, your answer is correct");
-                    correctAnswers[questionCount] = answerString;
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                     score++;
                 } else {
                     answerTextView.setText("Incorrect! The answer is " + answerString);
+                    String modified= answerString.replaceAll("Letter","");
+                    correctAnswers[questionCount] = modified;
                 }
 
-                selections[questionCount] = answerString;
+                selections[questionCount] = selectedButton;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -121,8 +133,8 @@ public class MyFragment extends Fragment {
     }
 
     private void proceedToNextQuestionWithDelay() {
-        if (questionCount < 4) {
-            questions[questionCount] = answerString; // Save the current question
+        if (questionCount < 5) {
+            questions[questionCount] = letterTextView.getText().toString(); // Save the current question
             questionCount++;
             answerTextView.setText("");
 
@@ -138,7 +150,7 @@ public class MyFragment extends Fragment {
     }
 
     private void proceedToNextQuestion() {
-        if (questionCount < 4) {
+        if (questionCount < 5) {
             letterTextView.setText(getRandomLetter());
         } else {
             saveTestResult();
