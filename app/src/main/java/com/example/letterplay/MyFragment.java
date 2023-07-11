@@ -1,5 +1,6 @@
 package com.example.letterplay;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.fragment.app.Fragment;
 
 import java.util.Arrays;
@@ -19,6 +21,10 @@ import java.util.Random;
 public class MyFragment extends Fragment {
 
     private TextView letterTextView, answerTextView;
+
+    private Button sky;
+    private Button root;
+    private Button grass;
     private char[] skyLetters = {'b', 'd', 'f', 'h', 'k', 'l', 't'};
     private char[] grassLetters = {'g', 'j', 'p', 'q', 'y'};
     private char[] rootLetters = {'a', 'c', 'e', 'i', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z'};
@@ -48,6 +54,14 @@ public class MyFragment extends Fragment {
             answerTextView = view.findViewById(R.id.answer_text_view);
             answerTextView.setText(" ");
 
+            sky=view.findViewById(R.id.sky_button);
+            root=view.findViewById(R.id.root_button);
+            grass=view.findViewById(R.id.grass_button);
+
+            sky.setBackgroundColor(Color.BLUE);
+            root.setBackgroundColor(Color.BLUE);
+            grass.setBackgroundColor(Color.BLUE);
+
             Button skyButton = view.findViewById(R.id.sky_button);
             skyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,11 +69,17 @@ public class MyFragment extends Fragment {
                     try {
                         String selectedButton = "Sky";
                         if (answerString.equals("Sky Letter")) {
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             answerTextView.setText("Awesome, your answer is correct");
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
                             score++;
                         } else {
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             answerTextView.setText("Incorrect! The answer is " + answerString);
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
@@ -70,6 +90,10 @@ public class MyFragment extends Fragment {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+
+
+
+
                                 proceedToNextQuestionWithDelay();
                             }
                         }, 2000);
@@ -86,11 +110,17 @@ public class MyFragment extends Fragment {
                     try {
                         String selectedButton = "Grass";
                         if (answerString.equals("Grass Letter")) {
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             answerTextView.setText("Awesome, your answer is correct");
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
                             score++;
                         } else {
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             answerTextView.setText("Incorrect! The answer is " + answerString);
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
@@ -101,6 +131,7 @@ public class MyFragment extends Fragment {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+
                                 proceedToNextQuestionWithDelay();
                             }
                         }, 2000);
@@ -117,12 +148,18 @@ public class MyFragment extends Fragment {
                     try {
                         String selectedButton = "Root";
                         if (answerString.equals("Root Letter")) {
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             answerTextView.setText("Awesome, your answer is correct");
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
                             score++;
                         } else {
                             answerTextView.setText("Incorrect! The answer is " + answerString);
+                            sky.setEnabled(false);
+                            root.setEnabled(false);
+                            grass.setEnabled(false);
                             String modified = answerString.replaceAll("Letter", "");
                             correctAnswers[questionCount] = modified;
                         }
@@ -132,6 +169,8 @@ public class MyFragment extends Fragment {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+
+
                                 proceedToNextQuestionWithDelay();
                             }
                         }, 1000);
@@ -159,6 +198,9 @@ public class MyFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        sky.setEnabled(true);
+                        root.setEnabled(true);
+                        grass.setEnabled(true);
                         proceedToNextQuestion();
                     }
                 }, 2000);
